@@ -1,0 +1,45 @@
+
+
+body {
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    font-family: 'Hanalei Fill', cursive;
+}
+
+h1, h3, h4, h5, h6 {
+    padding: 5px;
+    margin: 0 auto;
+}
+
+#remainingGuesses, #totalWins {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#game-title {
+    margin-bottom: 25px;
+    font-size: 50px;
+    font-family: 'Hanalei Fill', cursive;
+    letter-spacing: 3px;
+}
+
+#winning-image, #losing-image{ 
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+#currentWord {
+    letter-spacing: 10px;
+}
+
+.game-column {
+    background-color: lightgray;
+    border: dotted  2px black;
+    min-height: 325px;
+}
+
+
+
