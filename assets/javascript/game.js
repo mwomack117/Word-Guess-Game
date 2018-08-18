@@ -1,72 +1,71 @@
 // Possible words
-var wordBank = ["unforgiven", "tombstone", "fistfull", "rio bravo", "cowboy", "indians",
-    "saloon", "wild bunch", "magnificent seven", "hud", "maverick", "hostiles"];
+var wordBank = ["unforgiven", "tombstone", "cowboy", "indians",
+    "saloon", "hud", "maverick", "hostiles", "lasso",
+    "whip", "spurs", "mustang", "rodeo", "stampede", "shootout"];
 
 
-var maxTries = 8; // Max tries player for player
+
 var currentWord; // Index of the current word in the array
 var underscoreArray = []; // Word user is trying to build to match currentWord. Correct letters guessed
-var remainingGuesses = 0; // How many tries player has left
+var remainingGuesses = 8; // How many tries player has left
 var guessedLetters = []; // Array to store letters already guessed in current game
 var wins = 0; // How many times player has won
-var alphabet = ["abckefghijklmnopqrstuvwxyz "];
+var chosenWordArray;
+var underscoreString;
 
 
+// Create function that resets variables for start of game
+function startGame() {
 
+    // Picks random word from wordBank
+    currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 
+    // Make underscores with same amount as letters count for our current word
+    chosenWordArray = currentWord.split("");
 
+    for (let i = 0; i < chosenWordArray.length; i++) {
+        underscoreArray.push("_");
+    }
 
-// Display guesses available
-remainingGuesses = maxTries;
-document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+    underscoreString = underscoreArray.join("");
 
-// Picks random word from wordBank
-currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+    document.getElementById("currentWord").innerHTML = underscoreString;
 
+    guessedLetters = [];
 
-// Make underscores with same amount as letters count for our current word
-var chosenWordArray = currentWord.split("");
+    document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
 
-var underscoreArray = [];
-for (let i = 0; i < chosenWordArray.length; i++) {
-    underscoreArray.push("_");
-}
+};
 
-var underscoreString = underscoreArray.join("");
+startGame();
 
-document.getElementById("currentWord").innerHTML = underscoreString;
-
-
-
-
-
+// trial code start
+// Checks for a win by seeing if there are any remaining underscores in the guessingword we are building.
 
 
 document.onkeyup = function (event) {
 
     var key = event.key.toLowerCase();
-    if (alphabet.includes(key)) {
 
-        for (var i = 0; i < chosenWordArray.length; i++) {
-            if (chosenWordArray[i] === key) {
-                underscoreArray[i] = key;
-                underscoreString = underscoreArray.join("");
 
-                document.getElementById("currentWord").innerHTML = underscoreString;
-                
-            }
+
+    for (var i = 0; i < chosenWordArray.length; i++) {
+        if (chosenWordArray[i] === key) {
+            underscoreArray[i] = key;
+            underscoreString = underscoreArray.join(""); 4
+            document.getElementById("currentWord").innerHTML = underscoreString;
+
         }
-        if (chosenWordArray.includes(key) === false) {
-            console.log("wrong letter: " + key);
-            guessedLetters.push(key);
-            document.getElementById("guessedLetters").innerHTML = guessedLetters;
-        } else {
-            console.log("character not recognized");
-        }
+    }
+    if (chosenWordArray.includes(key) === false) {
+        guessedLetters.push(key);
+        remainingGuesses--;
+        document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+        document.getElementById("guessedLetters").innerHTML = guessedLetters;
     }
 };
 
 console.log(underscoreArray);
 console.log(chosenWordArray);
-console.log(underscoreString);
-console.log(alphabet);
+console.log(underscoreString)
+console.log(currentWord);
